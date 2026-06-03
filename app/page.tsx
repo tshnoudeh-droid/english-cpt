@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import LandingSection from "@/components/LandingSection";
 import SceneSection from "@/components/SceneSection";
+import ColophonSection from "@/components/ColophonSection";
 import VoiceoverButton from "@/components/VoiceoverButton";
 
 const SCENE_COUNT = 4;
@@ -106,6 +107,7 @@ export default function Home() {
           videoFile="scene-4.mp4"
           voiceoverSlot={makeButton(4)}
         />
+        <ColophonSection />
       </div>
     </>
   );

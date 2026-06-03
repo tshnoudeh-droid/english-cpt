@@ -128,7 +128,7 @@ export default function SceneSection({
   const textPanel = (
     <div
       ref={textRef}
-      className="fade-up"
+      className="fade-up scene-text-panel"
       style={{
         width: "50%",
         backgroundColor: textBg,
@@ -165,14 +165,14 @@ export default function SceneSection({
   );
 
   const videoPanel = (
-    <div style={{ width: "50%", position: "relative" }}>
+    <div className="scene-video-panel" style={{ width: "50%", position: "relative" }}>
       <VideoPanel videoFile={videoFile} sceneNumber={sceneNumber} />
     </div>
   );
 
   return (
     <section
-      className="snap-section"
+      className="snap-section scene-two-col"
       style={{ display: "flex", height: "100dvh", overflow: "hidden" }}
     >
       {layout === "text-left" ? (

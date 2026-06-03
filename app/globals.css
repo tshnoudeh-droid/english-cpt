@@ -168,3 +168,37 @@ body {
   font-style: italic;
   color: var(--accent);
 }
+
+/* ── Mobile layout ─────────────────────────────────────────── */
+/*
+  Below 768px: scene sections go single-column.
+  Text panel stacks above video panel.
+  Disable scroll-snap on mobile — free scroll feels better on touch.
+*/
+@media (max-width: 767px) {
+  .snap-container {
+    scroll-snap-type: none;
+  }
+
+  .snap-section {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+
+  /* Two-column sections → single column */
+  .scene-two-col {
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 100dvh;
+  }
+
+  .scene-two-col .scene-text-panel {
+    width: 100% !important;
+    min-height: 55dvh;
+  }
+
+  .scene-two-col .scene-video-panel {
+    width: 100% !important;
+    height: 45dvh;
+  }
+}
