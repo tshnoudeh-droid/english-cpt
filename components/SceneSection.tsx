@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import VideoPanel from "./VideoPanel";
 
 export type SceneLayout = "text-left" | "text-right" | "fullbleed";
@@ -10,8 +13,28 @@ interface SceneSectionProps {
   keyLine?: string;
   layout: SceneLayout;
   videoFile: string;
-  /** Slot for VoiceoverButton — wired in Chunk 4 */
   voiceoverSlot?: React.ReactNode;
+}
+
+function useFadeIn() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) el.classList.add("visible");
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return ref;
 }
 
 export default function SceneSection({
@@ -24,18 +47,18 @@ export default function SceneSection({
   videoFile,
   voiceoverSlot,
 }: SceneSectionProps) {
+  const textRef = useFadeIn();
+
   if (layout === "fullbleed") {
     return (
       <section
         className="snap-section"
         style={{ position: "relative", height: "100dvh", overflow: "hidden" }}
       >
-        {/* Video layer */}
         <div style={{ position: "absolute", inset: 0 }}>
           <VideoPanel videoFile={videoFile} sceneNumber={sceneNumber} />
         </div>
 
-        {/* Dark overlay */}
         <div
           aria-hidden="true"
           style={{
@@ -45,8 +68,9 @@ export default function SceneSection({
           }}
         />
 
-        {/* Text layer */}
         <div
+          ref={textRef}
+          className="fade-up"
           style={{
             position: "absolute",
             inset: 0,
@@ -103,6 +127,8 @@ export default function SceneSection({
 
   const textPanel = (
     <div
+      ref={textRef}
+      className="fade-up"
       style={{
         width: "50%",
         backgroundColor: textBg,
