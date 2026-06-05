@@ -1,5 +1,8 @@
+"use client";
+
 import VideoPanel from "./VideoPanel";
 import PhotoPanel from "./PhotoPanel";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export type SceneLayout = "text-left" | "text-right";
 
@@ -30,12 +33,15 @@ export default function SceneSection({
   mediaLabel,
   hasFile,
 }: SceneSectionProps) {
+  const { ref, isVisible } = useScrollReveal();
+
   const textBg = bgDark ? "var(--ink)" : "var(--warm-white)";
   const headlineColor = bgDark ? "var(--ink-light)" : "var(--ink)";
   const bodyColor = bgDark ? "#B8AFA0" : "var(--ink-muted)";
 
   const textPanel = (
     <div
+      ref={ref as React.RefObject<HTMLDivElement>}
       className="scene-text-panel"
       style={{
         width: "50%",
@@ -45,6 +51,9 @@ export default function SceneSection({
         flexDirection: "column",
         justifyContent: "center",
         boxSizing: "border-box",
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(24px)",
+        transition: "opacity 0.7s ease, transform 0.7s ease",
       }}
     >
       <span
@@ -124,17 +133,9 @@ export default function SceneSection({
       style={{ width: "50%", position: "relative", overflow: "hidden" }}
     >
       {mediaSide === "video" ? (
-        <VideoPanel
-          videoFile={mediaFile}
-          label={mediaLabel}
-          hasFile={hasFile}
-        />
+        <VideoPanel videoFile={mediaFile} label={mediaLabel} hasFile={hasFile} />
       ) : (
-        <PhotoPanel
-          imageFile={mediaFile}
-          label={mediaLabel}
-          hasFile={hasFile}
-        />
+        <PhotoPanel imageFile={mediaFile} label={mediaLabel} hasFile={hasFile} />
       )}
     </div>
   );

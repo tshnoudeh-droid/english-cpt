@@ -1,4 +1,10 @@
+"use client";
+
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+
 export default function ColophonSection() {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
     <section
       style={{
@@ -7,7 +13,15 @@ export default function ColophonSection() {
         textAlign: "center",
       }}
     >
-      <div className="colophon-content">
+      <div
+        ref={ref as React.RefObject<HTMLDivElement>}
+        className="colophon-content"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateY(0)" : "translateY(24px)",
+          transition: "opacity 0.7s ease, transform 0.7s ease",
+        }}
+      >
         <p
           style={{
             fontFamily: "var(--font-playfair), Georgia, serif",
