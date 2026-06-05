@@ -1,61 +1,69 @@
 # CLAUDE.md — Proof (CPT Multimedia Website)
 
 ## What this is
-A static cinematic website for a Grade 10 AP English CPT. No auth, no database, no API routes. Pure Next.js App Router + Tailwind + TypeScript, deployed to Vercel.
-
-## Read first
-Always read `PRD.md` before writing any code. It contains the full spec: sections, components, design system, chunk order.
+Static cinematic single-page website. Grade 10 AP English CPT.
+No auth. No database. No API routes. Static only.
 
 ## Stack
-- Next.js 16 App Router, TypeScript strict
-- Tailwind CSS v4 (utility classes only — no custom plugins)
-- Google Fonts via `next/font/google`: Playfair Display + DM Sans
-- No external animation libs (no Framer Motion, no GSAP)
-- No UI component libs (no shadcn, no Radix)
-- No auth, no database
+- Next.js 16 App Router, TypeScript strict mode, no `any`
+- Tailwind CSS (utility classes)
+- Google Fonts via `next/font/google` — NEVER CDN
+  - Playfair Display: weights 400 and 400 italic only
+  - DM Sans: weights 400 and 500 only
+- No Framer Motion, no GSAP, no animation libraries
+- No shadcn, no Radix, no UI component libraries
 
 ## Commands
 ```bash
-npm run dev      # local dev server
-npm run build    # production build — must pass before every commit
-npm run lint     # ESLint check
+npm run dev     # local dev
+npm run build   # must pass before every commit — zero errors
+npm run lint    # ESLint
 ```
 
-## File structure
+## CSS variables — ALWAYS use these, NEVER hardcode hex elsewhere
 ```
-app/
-  layout.tsx        — root layout, font injection, CSS vars
-  page.tsx          — renders all 6 sections
-  globals.css       — CSS variables, base reset, grain texture
-components/
-  LandingSection.tsx
-  SceneSection.tsx
-  ColophonSection.tsx
-  VoiceoverButton.tsx
-  VideoPanel.tsx
-  GrainOverlay.tsx
-public/
-  video/              — scene-1.mp4 through scene-4.mp4 (added later)
-  audio/              — scene-1.mp3 through scene-4.mp3 (added later)
+--cream: #F5F0E8
+--warm-white: #FAF8F4
+--ink: #1C1A17
+--ink-muted: #5C5549
+--ink-light: #EAE4D8
+--accent: #C17E3A
+--accent-light: #E8D5B0
 ```
 
-## Design rules — NEVER deviate
-- Colors: use CSS variables only (--cream, --warm-white, --ink, --ink-muted, --accent, --accent-light)
-- Fonts: Playfair Display for display/headlines, DM Sans for body/UI
-- No hardcoded hex values in component files — CSS vars only
-- On-screen text is hardcoded in component JSX — not in a data file
-- Video and audio files are optional — build with placeholders first
+## Component tree
+```
+app/layout.tsx              — root layout, fonts, CSS vars on body
+app/page.tsx                — all sections + AudioController + GrainOverlay
+app/globals.css             — CSS variables, base reset only
+components/LandingSection.tsx
+components/SceneSection.tsx — Sections 1, 2, 4
+components/FullBleedSection.tsx — Section 3
+components/PhotoTransition.tsx  — strips A, B, C
+components/ColophonSection.tsx
+components/VideoPanel.tsx   — hasFile boolean prop
+components/PhotoPanel.tsx   — hasFile boolean prop
+components/AudioController.tsx
+components/GrainOverlay.tsx
+hooks/useScrollReveal.ts
+public/video/               — scene-2.mp4, scene-4.mp4
+public/images/              — 5 photo files
+public/audio/               — voiceover.mp3, music.mp3
+```
+
+## Media slots
+All `hasFile={false}` until Chunk 9. Flip to `hasFile={true}` only when files are confirmed present.
 
 ## Chunk discipline — CRITICAL
-Complete chunks in PRD order. After each chunk:
+One chunk at a time. After each:
 1. `npm run build` — must pass
-2. `git add` specific files `&& git commit -m "feat/chore: [message]"`
-3. `git push origin main`
-Never start the next chunk until the current one is committed and pushed.
+2. `git add` specific files, commit, push
+Never start next chunk until current is committed and pushed.
 
 ## NEVER
-- Install packages not in the current chunk's scope
-- Use `any` in TypeScript
-- Hardcode colors outside of globals.css
-- Overwrite working code from a previous chunk without reading it first
-- Skip the build check before committing
+- Hardcode hex values outside globals.css
+- Use TypeScript `any`
+- Install packages outside current chunk scope
+- Overwrite working chunk code without reading it first
+- Use animation libraries
+- Use UI component libraries
