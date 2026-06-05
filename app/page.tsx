@@ -1,3 +1,9 @@
+import LandingSection from "@/components/LandingSection";
+
 export default function Home() {
-  return <main style={{ minHeight: "100vh", background: "var(--cream)" }} />;
+  return (
+    <main>
+      <LandingSection />
+    </main>
+  );
 }

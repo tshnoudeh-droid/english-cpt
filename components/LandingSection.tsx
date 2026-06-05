@@ -1,50 +1,62 @@
 export default function LandingSection() {
   return (
     <section
-      className="snap-section"
       style={{
-        position: "relative",
-        height: "100dvh",
-        backgroundColor: "var(--cream)",
+        minHeight: "100vh",
+        background: "var(--cream)",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        overflow: "hidden",
       }}
     >
-      <div style={{ textAlign: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <h1
-          className="font-display"
           style={{
-            fontSize: "clamp(64px, 12vw, 120px)",
+            fontFamily: "var(--font-playfair), Georgia, serif",
+            fontSize: "clamp(72px, 10vw, 130px)",
             fontWeight: 400,
             color: "var(--ink)",
             letterSpacing: "-0.02em",
             lineHeight: 1,
-            marginBottom: "1.25rem",
+            margin: 0,
           }}
         >
           Proof
         </h1>
 
         <p
-          className="font-body"
           style={{
+            fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
             fontSize: "13px",
-            letterSpacing: "0.25em",
+            letterSpacing: "0.12em",
             textTransform: "uppercase",
-            fontVariantCaps: "small-caps",
             color: "var(--ink-muted)",
+            marginTop: "16px",
+            marginBottom: 0,
           }}
         >
-          A journey
+          A journey inward.
         </p>
+
+        <div
+          aria-hidden="true"
+          style={{
+            width: "1px",
+            height: "40px",
+            background: "var(--accent)",
+            marginTop: "32px",
+            animation: "pulse-line 2s ease-in-out infinite",
+          }}
+        />
       </div>
 
-      <div className="scroll-indicator" aria-hidden="true">
-        <div className="scroll-indicator__line" />
-        <div className="scroll-indicator__dot" />
-      </div>
+      <style>{`
+        @keyframes pulse-line {
+          0%, 100% { opacity: 1; }
+          50%       { opacity: 0.2; }
+        }
+      `}</style>
     </section>
   );
 }
