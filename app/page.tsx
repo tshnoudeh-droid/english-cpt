@@ -3,9 +3,12 @@ import SceneSection from "@/components/SceneSection";
 import FullBleedSection from "@/components/FullBleedSection";
 import PhotoTransition from "@/components/PhotoTransition";
 import ColophonSection from "@/components/ColophonSection";
+import AudioController from "@/components/AudioController";
 
 export default function Home() {
   return (
+    <>
+    <AudioController />
     <main>
       {/* Section 0 — Landing */}
       <LandingSection />
@@ -92,5 +95,6 @@ export default function Home() {
       {/* Section 5 — Colophon */}
       <ColophonSection />
     </main>
+    </>
   );
 }
