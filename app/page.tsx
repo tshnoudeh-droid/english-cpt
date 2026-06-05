@@ -1,9 +1,13 @@
 import LandingSection from "@/components/LandingSection";
 import SceneSection from "@/components/SceneSection";
+import FullBleedSection from "@/components/FullBleedSection";
+import PhotoTransition from "@/components/PhotoTransition";
+import ColophonSection from "@/components/ColophonSection";
 
 export default function Home() {
   return (
     <main>
+      {/* Section 0 — Landing */}
       <LandingSection />
 
       {/* Section 1 — The Student */}
@@ -16,6 +20,15 @@ export default function Home() {
         mediaSide="photo"
         mediaFile="photo-desk.jpg"
         mediaLabel="PHOTO — desk lamp"
+        hasFile={false}
+      />
+
+      {/* Transition Strip A */}
+      <PhotoTransition
+        imageFile="photo-hands.jpg"
+        imageLabel="PHOTO — hands close-up"
+        desktopHeight="280px"
+        mobileHeight="200px"
         hasFile={false}
       />
 
@@ -33,6 +46,26 @@ export default function Home() {
         hasFile={false}
       />
 
+      {/* Transition Strip B */}
+      <PhotoTransition
+        imageFile="photo-hallway.jpg"
+        imageLabel="PHOTO — school hallway"
+        desktopHeight="70vh"
+        mobileHeight="50vh"
+        hasFile={false}
+      />
+
+      {/* Section 3 — The Proof */}
+      <FullBleedSection
+        imageFile="photo-build.jpg"
+        imageLabel="PHOTO — built object"
+        number="III."
+        headline="The proof"
+        body="That's when I understood what a journey actually is. Not moving from A to B. It's the first time something you made lifts off the ground — and you're the only one in the room who knows why it works."
+        keyLine="That moment doesn't fit in a grade. It just sits there, real."
+        hasFile={false}
+      />
+
       {/* Section 4 — The Answer */}
       <SceneSection
         number="IV."
@@ -46,6 +79,18 @@ export default function Home() {
         mediaLabel="VIDEO 4 — wide horizon"
         hasFile={false}
       />
+
+      {/* Transition Strip C */}
+      <PhotoTransition
+        imageFile="photo-sky.jpg"
+        imageLabel="PHOTO — open sky"
+        desktopHeight="50vh"
+        mobileHeight="40vh"
+        hasFile={false}
+      />
+
+      {/* Section 5 — Colophon */}
+      <ColophonSection />
     </main>
   );
 }
