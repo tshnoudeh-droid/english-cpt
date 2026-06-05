@@ -60,6 +60,7 @@ export default function AudioController() {
 
   return (
     <div
+      className="audio-controller"
       style={{
         position: "fixed",
         bottom: "24px",

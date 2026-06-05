@@ -21,3 +21,48 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* ── Mobile layout ─────────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* SceneSection: single column, text above media */
+  .scene-text-panel {
+    width: 100% !important;
+    padding: 40px 24px !important;
+  }
+
+  .scene-media-panel {
+    width: 100% !important;
+    height: 260px !important;
+    flex-shrink: 0;
+  }
+
+  /* Force column layout — text first regardless of layout prop */
+  section:has(.scene-text-panel) {
+    flex-direction: column !important;
+    min-height: unset !important;
+  }
+
+  /* Text panel always renders before media panel on mobile */
+  .scene-media-panel {
+    order: 2;
+  }
+
+  .scene-text-panel {
+    order: 1;
+  }
+
+  /* FullBleedSection: allow natural height on small screens */
+  section:has(.colophon-content) {
+    padding: 60px 20px !important;
+  }
+
+  /* AudioController: smaller buttons */
+  .audio-controller {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+
+  .audio-controller button {
+    padding: 8px 14px !important;
+  }
+}
