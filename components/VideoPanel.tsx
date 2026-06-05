@@ -1,85 +1,68 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 interface VideoPanelProps {
   videoFile: string;
-  sceneNumber: number;
+  label: string;
+  hasFile: boolean;
 }
 
-export default function VideoPanel({ videoFile, sceneNumber }: VideoPanelProps) {
+export default function VideoPanel({ videoFile, label, hasFile }: VideoPanelProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
-    const container = containerRef.current;
+    if (!hasFile) return;
     const video = videoRef.current;
-    if (!container) return;
+    if (!video) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!video || !videoReady) return;
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
       },
       { threshold: 0.4 }
     );
 
-    observer.observe(container);
+    observer.observe(video);
     return () => observer.disconnect();
-  }, [videoReady]);
+  }, [hasFile]);
 
-  return (
-    <div
-      ref={containerRef}
-      style={{ position: "relative", width: "100%", height: "100%" }}
-    >
-      {/* Placeholder — visible until real video loads */}
+  if (!hasFile) {
+    return (
       <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundColor: "var(--ink)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: videoReady ? 0 : 1,
-          transition: "opacity 0.6s ease",
-          pointerEvents: "none",
-        }}
-      >
-        <span
-          className="chapter-label"
-          style={{ opacity: 0.3 }}
-        >
-          Scene {sceneNumber}
-        </span>
-      </div>
-
-      <video
-        ref={videoRef}
-        src={`/video/${videoFile}`}
-        autoPlay
-        muted
-        loop
-        playsInline
-        onLoadedMetadata={() => setVideoReady(true)}
-        onError={() => setVideoReady(false)}
         style={{
           width: "100%",
           height: "100%",
-          objectFit: "cover",
-          opacity: videoReady ? 1 : 0,
-          transition: "opacity 0.6s ease",
+          background: "#1C1A17",
+          border: "1px dashed rgba(193,126,58,0.4)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "rgba(193,126,58,0.6)",
+          fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
+          fontSize: "12px",
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
         }}
-      />
-    </div>
+      >
+        {label}
+      </div>
+    );
+  }
+
+  return (
+    <video
+      ref={videoRef}
+      src={`/video/${videoFile}`}
+      autoPlay
+      muted
+      loop
+      playsInline
+      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+    />
   );
 }
