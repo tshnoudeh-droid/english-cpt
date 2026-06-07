@@ -1,7 +1,6 @@
 import LandingSection from "@/components/LandingSection";
 import SceneSection from "@/components/SceneSection";
 import FullBleedSection from "@/components/FullBleedSection";
-import PhotoTransition from "@/components/PhotoTransition";
 import BuildsSection from "@/components/BuildsSection";
 import ColophonSection from "@/components/ColophonSection";
 import AudioController from "@/components/AudioController";
@@ -25,15 +24,6 @@ export default function Home() {
         mediaFile="photo-desk.jpg"
         mediaLabel="PHOTO — desk lamp"
         hasFile={true}
-      />
-
-      {/* Transition Strip A */}
-      <PhotoTransition
-        imageFile="photo-hands.jpg"
-        imageLabel="PHOTO — hands close-up"
-        desktopHeight="280px"
-        mobileHeight="200px"
-        hasFile={false}
       />
 
       {/* Section 2 — The Moment */}
@@ -76,15 +66,6 @@ export default function Home() {
         mediaFile="scene-4.mp4"
         mediaLabel="VIDEO 4 — wide horizon"
         hasFile={true}
-      />
-
-      {/* Transition Strip C */}
-      <PhotoTransition
-        imageFile="photo-sky.jpg"
-        imageLabel="PHOTO — open sky"
-        desktopHeight="50vh"
-        mobileHeight="40vh"
-        hasFile={false}
       />
 
       {/* Section 5 — Colophon */}

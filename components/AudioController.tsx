@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useAudio } from "@/contexts/AudioContext";
 
 const pillStyle: React.CSSProperties = {
   border: "1px solid var(--accent)",
@@ -22,41 +22,7 @@ const pillStyle: React.CSSProperties = {
 };
 
 export default function AudioController() {
-  const voiceoverRef = useRef<HTMLAudioElement>(null);
-  const musicRef = useRef<HTMLAudioElement>(null);
-  const [isPlayingVO, setIsPlayingVO] = useState(false);
-  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
-
-  useEffect(() => {
-    const music = musicRef.current;
-    if (music) music.volume = 0.2;
-  }, []);
-
-  function handleVoiceover() {
-    const audio = voiceoverRef.current;
-    if (!audio) return;
-    if (isPlayingVO) {
-      audio.pause();
-      setIsPlayingVO(false);
-    } else {
-      audio.play().then(() => setIsPlayingVO(true)).catch(() => {
-        console.log("Voiceover audio not yet available.");
-      });
-    }
-  }
-
-  function handleMusic() {
-    const audio = musicRef.current;
-    if (!audio) return;
-    if (isPlayingMusic) {
-      audio.pause();
-      setIsPlayingMusic(false);
-    } else {
-      audio.play().then(() => setIsPlayingMusic(true)).catch(() => {
-        console.log("Music audio not yet available.");
-      });
-    }
-  }
+  const { isPlayingVO, isPlayingMusic, toggleVO, toggleMusic } = useAudio();
 
   return (
     <div
@@ -71,9 +37,8 @@ export default function AudioController() {
         zIndex: 50,
       }}
     >
-      {/* Music button */}
       <button
-        onClick={handleMusic}
+        onClick={toggleMusic}
         style={pillStyle}
         onFocus={(e) => { e.currentTarget.style.boxShadow = "0 0 0 2px var(--accent-light)"; }}
         onBlur={(e) => { e.currentTarget.style.boxShadow = "none"; }}
@@ -82,9 +47,8 @@ export default function AudioController() {
         {isPlayingMusic ? "⏸ Music" : "♪ Music"}
       </button>
 
-      {/* Voiceover button */}
       <button
-        onClick={handleVoiceover}
+        onClick={toggleVO}
         style={pillStyle}
         onFocus={(e) => { e.currentTarget.style.boxShadow = "0 0 0 2px var(--accent-light)"; }}
         onBlur={(e) => { e.currentTarget.style.boxShadow = "none"; }}
@@ -92,20 +56,6 @@ export default function AudioController() {
       >
         {isPlayingVO ? "⏸ Narration" : "▶ Narration"}
       </button>
-
-      {/* Hidden audio elements */}
-      <audio
-        ref={voiceoverRef}
-        src="/audio/voiceover.m4a"
-        onEnded={() => setIsPlayingVO(false)}
-        style={{ display: "none" }}
-      />
-      <audio
-        ref={musicRef}
-        src="/audio/music.mp3"
-        loop
-        style={{ display: "none" }}
-      />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import GrainOverlay from "@/components/GrainOverlay";
+import { AudioProvider } from "@/contexts/AudioContext";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -32,7 +33,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${playfair.variable} ${dmSans.variable}`}>
         <GrainOverlay />
-        {children}
+        <AudioProvider>
+          {children}
+        </AudioProvider>
       </body>
     </html>
   );
