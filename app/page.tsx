@@ -55,13 +55,13 @@ export default function Home() {
 
       {/* Section 3 — The Proof */}
       <FullBleedSection
-        imageFile="photo-build.jpg"
+        imageFile="photo-build.gif"
         imageLabel="PHOTO — built object"
         number="III."
         headline="The proof"
         body="That's when I understood what a journey actually is. Not moving from A to B. It's the first time something you made lifts off the ground — and you're the only one in the room who knows why it works."
         keyLine="That moment doesn't fit in a grade. It just sits there, real."
-        hasFile={false}
+        hasFile={true}
       />
 
       {/* Section 4 — The Answer */}
