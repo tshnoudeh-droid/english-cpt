@@ -10,25 +10,25 @@ interface BuildCard {
 const builds: BuildCard[] = [
   {
     name: "FusynCAD",
-    description: "Built for engineers.",
+    description: "Built before I knew if I was an engineer.",
     imageFile: "project-fusyncad.jpg",
     hasFile: true,
   },
   {
     name: "Intrinsic",
-    description: "What's a stock actually worth?",
+    description: "Built to understand something my school never taught.",
     imageFile: "project-intrinsic.jpg",
     hasFile: true,
   },
   {
     name: "Forge Hyperloop",
-    description: "Plan your trip.",
+    description: "Built because nobody told me a 15-year-old couldn't.",
     imageFile: "project-hyperloop.jpg",
     hasFile: true,
   },
   {
     name: "Stackd",
-    description: "See what your money can become.",
+    description: "Built at midnight because the question wouldn't leave me alone.",
     imageFile: "project-stackd.jpg",
     hasFile: true,
   },
@@ -51,12 +51,26 @@ export default function BuildsSection() {
           letterSpacing: "0.18em",
           textTransform: "uppercase",
           color: "var(--accent)",
-          marginBottom: "48px",
+          marginBottom: "16px",
           marginTop: 0,
           textAlign: "center",
         }}
       >
-        Some of what I built.
+        What the journey produced.
+      </p>
+
+      <p
+        style={{
+          fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
+          fontSize: "17px",
+          lineHeight: 1.75,
+          color: "var(--ink-muted)",
+          textAlign: "center",
+          margin: "0 auto 48px",
+          maxWidth: "560px",
+        }}
+      >
+        These are not side projects. Each one started with a question school never asked me.
       </p>
 
       {/* 2×2 grid */}

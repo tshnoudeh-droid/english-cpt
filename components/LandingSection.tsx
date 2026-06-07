@@ -1,26 +1,6 @@
 "use client";
 
-import { useAudio } from "@/contexts/AudioContext";
-
-const pillStyle: React.CSSProperties = {
-  border: "1px solid var(--accent)",
-  background: "transparent",
-  borderRadius: "999px",
-  padding: "10px 20px",
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-  gap: "8px",
-  fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
-  fontSize: "11px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.12em",
-  color: "var(--accent)",
-  outline: "none",
-};
-
 export default function LandingSection() {
-  const { isPlayingVO, isPlayingMusic, toggleVO, toggleMusic } = useAudio();
 
   return (
     <section
@@ -61,28 +41,6 @@ export default function LandingSection() {
         >
           A journey inward.
         </p>
-
-        {/* Audio toggles */}
-        <div style={{ display: "flex", gap: "12px", marginTop: "28px" }}>
-          <button
-            onClick={toggleMusic}
-            style={pillStyle}
-            onFocus={(e) => { e.currentTarget.style.boxShadow = "0 0 0 2px var(--accent-light)"; }}
-            onBlur={(e) => { e.currentTarget.style.boxShadow = "none"; }}
-            aria-label={isPlayingMusic ? "Pause music" : "Play music"}
-          >
-            {isPlayingMusic ? "⏸ Music" : "♪ Music"}
-          </button>
-          <button
-            onClick={toggleVO}
-            style={pillStyle}
-            onFocus={(e) => { e.currentTarget.style.boxShadow = "0 0 0 2px var(--accent-light)"; }}
-            onBlur={(e) => { e.currentTarget.style.boxShadow = "none"; }}
-            aria-label={isPlayingVO ? "Pause narration" : "Play narration"}
-          >
-            {isPlayingVO ? "⏸ Narration" : "▶ Narration"}
-          </button>
-        </div>
 
         <div
           aria-hidden="true"

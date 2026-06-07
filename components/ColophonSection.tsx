@@ -61,10 +61,21 @@ export default function ColophonSection() {
             fontSize: "13px",
             fontStyle: "italic",
             color: "var(--ink-muted)",
+            margin: "0 0 8px",
+          }}
+        >
+          Inspired by Christopher Boone, who proved to himself he could do hard things — and wrote it all down as evidence.
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
+            fontSize: "13px",
+            fontStyle: "italic",
+            color: "var(--ink-muted)",
             margin: 0,
           }}
         >
-          Inspired by the journey of Christopher Boone.
+          This is my version of that proof.
         </p>
       </div>
     </section>
