@@ -12,19 +12,19 @@ const builds: BuildCard[] = [
     name: "FusynCAD",
     description: "Built for engineers.",
     imageFile: "project-fusyncad.jpg",
-    hasFile: false,
+    hasFile: true,
   },
   {
     name: "Intrinsic",
     description: "What's a stock actually worth?",
     imageFile: "project-intrinsic.jpg",
-    hasFile: false,
+    hasFile: true,
   },
   {
     name: "Forge Hyperloop",
     description: "Plan your trip.",
     imageFile: "project-hyperloop.jpg",
-    hasFile: false,
+    hasFile: true,
   },
   {
     name: "Stackd",
