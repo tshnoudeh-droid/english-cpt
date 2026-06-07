@@ -30,7 +30,7 @@ const builds: BuildCard[] = [
     name: "Stackd",
     description: "See what your money can become.",
     imageFile: "project-stackd.jpg",
-    hasFile: false,
+    hasFile: true,
   },
 ];
 
