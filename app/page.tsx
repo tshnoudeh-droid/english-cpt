@@ -80,7 +80,7 @@ export default function Home() {
         mediaSide="video"
         mediaFile="scene-4.mp4"
         mediaLabel="VIDEO 4 — wide horizon"
-        hasFile={false}
+        hasFile={true}
       />
 
       {/* Transition Strip C */}
