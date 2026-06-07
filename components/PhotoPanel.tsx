@@ -32,12 +32,14 @@ export default function PhotoPanel({ imageFile, label, hasFile }: PhotoPanelProp
 
   if (imageFile.endsWith(".gif")) {
     return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={`/images/${imageFile}`}
-        alt={label}
-        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-      />
+      <div style={{ width: "100%", height: "100%", background: "var(--ink)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`/images/${imageFile}`}
+          alt={label}
+          style={{ width: "100%", height: "auto", display: "block" }}
+        />
+      </div>
     );
   }
 
