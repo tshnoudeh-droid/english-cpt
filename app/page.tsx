@@ -23,7 +23,7 @@ export default function Home() {
         mediaSide="photo"
         mediaFile="photo-desk.jpg"
         mediaLabel="PHOTO — desk lamp"
-        hasFile={false}
+        hasFile={true}
       />
 
       {/* Transition Strip A */}
