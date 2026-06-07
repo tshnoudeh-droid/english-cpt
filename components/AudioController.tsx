@@ -96,7 +96,7 @@ export default function AudioController() {
       {/* Hidden audio elements */}
       <audio
         ref={voiceoverRef}
-        src="/audio/voiceover.mp3"
+        src="/audio/voiceover.m4a"
         onEnded={() => setIsPlayingVO(false)}
         style={{ display: "none" }}
       />
