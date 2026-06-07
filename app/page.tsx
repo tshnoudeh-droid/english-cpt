@@ -2,6 +2,7 @@ import LandingSection from "@/components/LandingSection";
 import SceneSection from "@/components/SceneSection";
 import FullBleedSection from "@/components/FullBleedSection";
 import PhotoTransition from "@/components/PhotoTransition";
+import BuildsSection from "@/components/BuildsSection";
 import ColophonSection from "@/components/ColophonSection";
 import AudioController from "@/components/AudioController";
 
@@ -49,14 +50,8 @@ export default function Home() {
         hasFile={true}
       />
 
-      {/* Transition Strip B */}
-      <PhotoTransition
-        imageFile="photo-hallway.jpg"
-        imageLabel="PHOTO — school hallway"
-        desktopHeight="70vh"
-        mobileHeight="50vh"
-        hasFile={false}
-      />
+      {/* Builds showcase — replaces hallway transition strip */}
+      <BuildsSection />
 
       {/* Section 3 — The Proof */}
       <FullBleedSection
