@@ -46,7 +46,7 @@ export default function Home() {
         mediaSide="video"
         mediaFile="scene-2.mp4"
         mediaLabel="VIDEO 2 — close-up hands"
-        hasFile={false}
+        hasFile={true}
       />
 
       {/* Transition Strip B */}
